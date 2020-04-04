@@ -19,22 +19,25 @@ public class ActionWithWebElements {
     }
 
     //will work with some web element
-    public void enterTextToTextField(By element, String text){
+    public void enterTextToTextField(WebElement element, String text){
         try {
-            webDriver.findElement(element).clear();
-            webDriver.findElement(element).sendKeys();
-            logger.info("");
+//            webDriver.findElement(element).clear();
+//            webDriver.findElement(element).sendKeys();
+            element.clear();
+            element.sendKeys();
+            logger.info("Success");
         }
         catch(Exception ex){
             ex.printStackTrace();
-            logger.error("");
+            logger.error("Can't enter Text");
         }
 
     }
 
-    public void clickButton(By element) {
+    public void clickButton(WebElement element) {
         try {
-            webDriver.findElement(element).click();
+//            webDriver.findElement(element).click();
+            element.click();
             logger.info("");
 
         } catch (Exception ex) {
@@ -43,9 +46,9 @@ public class ActionWithWebElements {
         }
     }
 
-    public boolean isElemenDisplayed(By element){
+    public boolean isElemenDisplayed(WebElement element){
         try{
-            return webDriver.findElement(element).isDisplayed();
+            return element.isDisplayed(); //webDriver.findElement(element).isDisplayed();
 
         } catch(Exception e){
             e.printStackTrace();
@@ -54,12 +57,13 @@ public class ActionWithWebElements {
         }
     }
 
-    public void setCheckBox(By element, boolean state){
+    public void setCheckBox(WebElement element, boolean state){
         try{
-            if (webDriver.findElement(element).isSelected() == state){
+            if (element.isSelected() == state){//(webDriver.findElement(element).isSelected() == state){
             }
             else{
-                webDriver.findElement(element).click();
+//                webDriver.findElement(element).click();
+                element.click();
             }
             logger.info("The checkbox is");
 
@@ -69,8 +73,8 @@ public class ActionWithWebElements {
         }
     }
 
-    private void selectElementFromDropDown(By element, String itemName){
-        Select dropDownValue = new Select(webDriver.findElement(element));
+    private void selectElementFromDropDown(WebElement element, String itemName){
+        Select dropDownValue = new Select (element);//(webDriver.findElement(element));
         try{
             dropDownValue.selectByVisibleText(itemName);
 
